@@ -212,6 +212,9 @@
     width: 210px; height: 260px;
     border-radius: 20px;
     background: linear-gradient(155deg, var(--accent), #4A0D18);
+    background-image: url('img/ricardo-perfil.jpg');
+    background-size: cover;
+    background-position: center top;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -222,6 +225,7 @@
     transform-style: preserve-3d;
     transform-origin: left center;
     backface-visibility: hidden;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   }
 
   .about p{
@@ -653,7 +657,7 @@
     <div class="reveal">
       <h2>E aí!</h2>
     </div>
-    <div class="about-photo mono reveal-3d">RJ</div>
+    <div class="about-photo mono reveal-3d" role="img" aria-label="Foto de Ricardo Juliano"></div>
     <div class="reveal">
       <p>Sou o Ricardo, moro em Buenópolis, Minas Gerais, e hoje trabalho
       como assistente de negócios numa cooperativa de crédito — cuido de
@@ -661,7 +665,8 @@
       <p>Nas horas livres eu construo software: comecei com HTML, CSS e
       Kotlin, migrei pra TypeScript sem erros de compilador e hoje mantenho
       um e-commerce fullstack completo. Estou em transição de carreira,
-      buscando minha primeira vaga como dev fullstack.</p>
+      buscando minha primeira oportunidade como dev fullstack / dev
+      android.</p>
     </div>
   </div>
 </section>
