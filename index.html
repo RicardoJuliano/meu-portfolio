@@ -548,9 +548,9 @@
 
   @media (prefers-reduced-motion: reduce){
     .accent-mark{ animation: none; }
-    .statement .word{ transition: none; }
     html{ scroll-behavior: auto; }
-    .reveal, .reveal-3d{ opacity: 1 !important; transform: none !important; transition: none !important; }
+    /* mantém um fade suave (sem deslocar/girar) em vez de matar o efeito por completo */
+    .reveal, .reveal-3d{ transform: none !important; transition: opacity .5s ease !important; }
   }
 
   /* enquanto o JS não carrega, mantém tudo visível (progressive enhancement) */
