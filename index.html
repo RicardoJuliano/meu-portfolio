@@ -546,12 +546,8 @@
     .reveal-3d{ transform: rotateY(-45deg) translateX(-8%); }
   }
 
-  @media (prefers-reduced-motion: reduce){
-    .accent-mark{ animation: none; }
-    html{ scroll-behavior: auto; }
-    /* mantém um fade suave (sem deslocar/girar) em vez de matar o efeito por completo */
-    .reveal, .reveal-3d{ transform: none !important; transition: opacity .5s ease !important; }
-  }
+  /* Efeitos de scroll sempre ativos, mesmo com "reduzir movimento" ligado no SO —
+     é a peça central do portfólio, então rodam por decisão explícita do dono do site. */
 
   /* enquanto o JS não carrega, mantém tudo visível (progressive enhancement) */
   .no-js .reveal, .no-js .reveal-3d{ opacity: 1 !important; transform: none !important; }
@@ -791,10 +787,7 @@
   stEl.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
   const wordEls = stEl.querySelectorAll('.word');
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   function updateReveal(){
-    if (reduceMotion){ wordEls.forEach(w => w.classList.add('on')); return; }
     const rect = stEl.getBoundingClientRect();
     const vh = window.innerHeight;
     // progress: 0 when section bottom hits viewport bottom, 1 when section top hits ~35% viewport
