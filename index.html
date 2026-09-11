@@ -308,11 +308,26 @@
   }
 
   .card .shot{
+    position: relative;
     aspect-ratio: 16/10.5;
     padding: 22px;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .card .shot::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.72) 100%);
+  }
+
+  .card .chrome, .card .shot-title{
+    position: relative;
+    z-index: 1;
   }
 
   .card .chrome{
@@ -365,12 +380,12 @@
     border-bottom: 1px solid var(--ink);
   }
 
-  .c1 .shot{ background: linear-gradient(155deg, #5A4BFF, #241C7A); }
-  .c2 .shot{ background: linear-gradient(155deg, #2FA37D, #124232); }
-  .c3 .shot{ background: linear-gradient(155deg, #E3A542, #7A5210); }
-  .c4 .shot{ background: linear-gradient(155deg, #FF6B6B, #6E1616); }
-  .c5 .shot{ background: linear-gradient(155deg, #3E7CFF, #10245E); }
-  .c6 .shot{ background: linear-gradient(155deg, #B85AFF, #3A1466); }
+  .c1 .shot{ background-color: #5A4BFF; background-image: url('img/boutique-arco-iris.jpg'); }
+  .c2 .shot{ background-color: #2FA37D; background-image: url('img/trokei.jpg'); }
+  .c3 .shot{ background-color: #E3A542; background-image: url('img/resumo-facil.png'); }
+  .c4 .shot{ background-color: #FF6B6B; background-image: url('img/studytaks.png'); }
+  .c5 .shot{ background-color: #3E7CFF; background-image: url('img/touch-hero.png'); }
+  .c6 .shot{ background-color: #B85AFF; background-image: url('img/landinpages.png'); }
 
   /* ---------------- contact ---------------- */
 
