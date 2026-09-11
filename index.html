@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream: #F2EFE6;
-    --ink: #15130F;
+    --cream: #F5EDEA;
+    --ink: #000000;
     --ink-soft: #4A4740;
-    --line: rgba(21,19,15,0.14);
-    --accent: #5A4BFF;
-    --accent-2: #2FA37D;
-    --dark: #121212;
-    --dark-soft: #B7B4AC;
+    --line: rgba(0,0,0,0.14);
+    --accent: #C81E3A;
+    --accent-2: #7A1224;
+    --dark: #170606;
+    --dark-soft: #C9A7A7;
   }
 
   *{ box-sizing: border-box; }
@@ -25,7 +25,10 @@
 
   body{
     margin:0;
-    background: var(--cream);
+    background:
+      radial-gradient(1100px 620px at 12% -8%, rgba(200,30,58,0.14), transparent 60%),
+      radial-gradient(900px 560px at 108% 18%, rgba(122,18,36,0.12), transparent 55%),
+      var(--cream);
     color: var(--ink);
     font-family: 'Space Grotesk', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -193,7 +196,7 @@
   .about-photo{
     width: 210px; height: 260px;
     border-radius: 20px;
-    background: linear-gradient(155deg, var(--accent), #2A1F8F);
+    background: linear-gradient(155deg, var(--accent), #4A0D18);
     display:flex;
     align-items: center;
     justify-content: center;
@@ -289,7 +292,7 @@
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.85rem;
     text-decoration: none;
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--accent);
     padding-bottom: 2px;
   }
 
@@ -377,7 +380,8 @@
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.78rem;
     text-decoration: none;
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--accent);
+    color: var(--accent-2);
   }
 
   .c1 .shot{ background-color: #5A4BFF; background-image: url('img/boutique-arco-iris.jpg'); }
