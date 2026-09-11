@@ -320,9 +320,33 @@
   @media (max-width: 720px){ .grid{ grid-template-columns: 1fr; } }
 
   .card{
+    position: relative;
     border-radius: 18px;
     overflow: hidden;
     background: var(--ink);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+
+  .card:has(.card-link:hover){
+    transform: translateY(-4px);
+    box-shadow: 0 18px 34px rgba(0,0,0,0.18);
+  }
+
+  .card .card-link{
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    cursor: pointer;
+  }
+
+  .card .card-link:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  .card .meta a{
+    position: relative;
+    z-index: 6;
   }
 
   .card .shot{
@@ -682,6 +706,7 @@
     <div class="grid reveal-group">
 
       <div class="card c1 reveal">
+        <a class="card-link" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Boutique Arco-Íris"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">boutique-arco-iris</span></div>
           <div class="shot-title">Boutique<br>Arco-Íris</div>
@@ -694,6 +719,7 @@
       </div>
 
       <div class="card c2 reveal">
+        <a class="card-link" href="https://trokei-seven.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de trokei"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">trokei</span></div>
           <div class="shot-title">trokei</div>
@@ -706,6 +732,7 @@
       </div>
 
       <div class="card c3 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/resumo-facil" target="_blank" rel="noopener" aria-label="Abrir repositório de Resumo Fácil"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">resumo-facil</span></div>
           <div class="shot-title">Resumo<br>Fácil</div>
@@ -718,6 +745,7 @@
       </div>
 
       <div class="card c4 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener" aria-label="Abrir repositório de StudyTaks"></a>
         <div class="shot">
           <video src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" autoplay loop muted playsinline preload="metadata"></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">study-taks</span></div>
@@ -731,6 +759,7 @@
       </div>
 
       <div class="card c5 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener" aria-label="Abrir repositório de Touch Hero"></a>
         <div class="shot">
           <video src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" autoplay loop muted playsinline preload="metadata"></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">touch-hero</span></div>
@@ -744,6 +773,7 @@
       </div>
 
       <div class="card c6 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/landinpages" target="_blank" rel="noopener" aria-label="Abrir repositório de Landing Pages"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">landinpages</span></div>
           <div class="shot-title">Landing<br>Pages</div>
