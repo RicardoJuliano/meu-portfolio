@@ -128,7 +128,7 @@
   .hero-inner{ position: relative; display:inline-block; }
 
   .hero h1{
-    font-size: clamp(2.6rem, 9vw, 6.4rem);
+    font-size: clamp(1.9rem, 11vw, 6.4rem);
     font-weight: 700;
     text-transform: uppercase;
     line-height: 0.94;
@@ -276,6 +276,10 @@
   }
   section.frentes .frente:first-child{ border-top: 1px solid var(--line); }
 
+  @media (max-width: 560px){
+    .frente{ flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+
   .frente h3{
     font-size: 1.5rem;
     margin: 0;
@@ -382,7 +386,7 @@
     z-index: 0;
   }
 
-  .card .chrome, .card .shot-title{
+  .card .chrome{
     position: relative;
     z-index: 2;
   }
@@ -404,13 +408,6 @@
     background: rgba(255,255,255,0.08);
     padding: 3px 10px;
     border-radius: 20px;
-  }
-
-  .card .shot-title{
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.2;
   }
 
   .card .meta{
@@ -714,7 +711,6 @@
         <a class="card-link" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Boutique Arco-Íris"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">boutique-arco-iris</span></div>
-          <div class="shot-title">Boutique<br>Arco-Íris</div>
         </div>
         <div class="meta">
           <h3>Boutique Arco-Íris</h3>
@@ -727,7 +723,6 @@
         <a class="card-link" href="https://trokei-seven.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de trokei"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">trokei</span></div>
-          <div class="shot-title">trokei</div>
         </div>
         <div class="meta">
           <h3>trokei</h3>
@@ -740,7 +735,6 @@
         <a class="card-link" href="https://github.com/RicardoJuliano/resumo-facil" target="_blank" rel="noopener" aria-label="Abrir repositório de Resumo Fácil"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">resumo-facil</span></div>
-          <div class="shot-title">Resumo<br>Fácil</div>
         </div>
         <div class="meta">
           <h3>Resumo Fácil</h3>
@@ -754,7 +748,6 @@
         <div class="shot">
           <video src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" autoplay loop muted playsinline preload="metadata"></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">study-taks</span></div>
-          <div class="shot-title">StudyTaks</div>
         </div>
         <div class="meta">
           <h3>StudyTaks</h3>
@@ -768,7 +761,6 @@
         <div class="shot">
           <video src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" autoplay loop muted playsinline preload="metadata"></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">touch-hero</span></div>
-          <div class="shot-title">Touch<br>Hero</div>
         </div>
         <div class="meta">
           <h3>Touch Hero</h3>
@@ -781,7 +773,6 @@
         <a class="card-link" href="https://github.com/RicardoJuliano/landinpages" target="_blank" rel="noopener" aria-label="Abrir repositório de Landing Pages"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">landinpages</span></div>
-          <div class="shot-title">Landing<br>Pages</div>
         </div>
         <div class="meta">
           <h3>Landing Pages</h3>
