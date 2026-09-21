@@ -5,9 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ricardo Juliano, Desenvolvedor Fullstack</title>
 <meta name="description" content="Portfólio de Ricardo Juliano, desenvolvedor fullstack em transição de carreira, Buenópolis, MG.">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23000000'/%3E%3Ctext x='32' y='41' font-family='Courier New, monospace' font-size='24' font-weight='700' fill='%23F5EDEA' text-anchor='middle'%3ERJ%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ricardo Juliano, Desenvolvedor Fullstack">
+<meta property="og:description" content="Portfólio de Ricardo Juliano, desenvolvedor fullstack em transição de carreira, Buenópolis, MG.">
+<meta property="og:image" content="https://ricardojuliano.github.io/meu-portfolio/img/og-image.jpg">
+<meta property="og:url" content="https://ricardojuliano.github.io/meu-portfolio/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ricardo Juliano, Desenvolvedor Fullstack">
+<meta name="twitter:description" content="Portfólio de Ricardo Juliano, desenvolvedor fullstack em transição de carreira, Buenópolis, MG.">
+<meta name="twitter:image" content="https://ricardojuliano.github.io/meu-portfolio/img/og-image.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Qwitcher+Grypen:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Qwitcher+Grypen:wght@700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream: #F5EDEA;
@@ -389,9 +402,6 @@
   .card .chrome{
     position: relative;
     z-index: 2;
-  }
-
-  .card .chrome{
     display:flex;
     align-items:center;
     gap: 6px;
@@ -746,7 +756,7 @@
       <div class="card c4 reveal">
         <a class="card-link" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener" aria-label="Abrir repositório de StudyTaks"></a>
         <div class="shot">
-          <video src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="lazy-video" src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" loop muted playsinline preload="metadata"></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">study-taks</span></div>
         </div>
         <div class="meta">
@@ -759,7 +769,7 @@
       <div class="card c5 reveal">
         <a class="card-link" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener" aria-label="Abrir repositório de Touch Hero"></a>
         <div class="shot">
-          <video src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" autoplay loop muted playsinline preload="metadata"></video>
+          <video class="lazy-video" src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" loop muted playsinline preload="metadata"></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">touch-hero</span></div>
         </div>
         <div class="meta">
@@ -843,6 +853,23 @@
     revealEls.forEach((el) => io.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add('in-view'));
+  }
+
+  // vídeos dos cards só tocam enquanto estão visíveis na tela (economiza dados/bateria)
+  const lazyVideos = document.querySelectorAll('.lazy-video');
+  if ('IntersectionObserver' in window && lazyVideos.length){
+    const videoIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting){
+          entry.target.play().catch(() => {});
+        } else {
+          entry.target.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    lazyVideos.forEach((v) => videoIo.observe(v));
+  } else {
+    lazyVideos.forEach((v) => v.play().catch(() => {}));
   }
 
   // menu toggle
