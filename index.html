@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Qwitcher+Grypen:wght@700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.remove('no-js');</script>
 <style>
   :root{
     --cream: #F5EDEA;
@@ -167,13 +168,16 @@
   .accent-mark.a2{ bottom: -6px; right: -64px; font-size: 2.2rem; animation-delay: 1s; transform: rotate(14deg); }
 
   @keyframes float{
-    0%, 100%{ transform: translateY(0) rotate(0deg); }
-    50%{ transform: translateY(-10px) rotate(-6deg); }
+    0%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-10px) rotate(180deg); }
+    100%{ transform: translateY(0) rotate(360deg); }
   }
+  .accent-mark{ animation-duration: 14s; animation-timing-function: linear; }
   .accent-mark.a2{ animation-name: floatB; }
   @keyframes floatB{
-    0%, 100%{ transform: translateY(0) rotate(14deg); }
-    50%{ transform: translateY(10px) rotate(20deg); }
+    0%{ transform: translateY(0) rotate(14deg); }
+    50%{ transform: translateY(10px) rotate(194deg); }
+    100%{ transform: translateY(0) rotate(374deg); }
   }
 
   .avatar{
@@ -412,6 +416,7 @@
   }
   .card .chrome .url{
     margin-left: 10px;
+    white-space: nowrap;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.68rem;
     color: rgba(255,255,255,0.6);
@@ -420,9 +425,12 @@
     border-radius: 20px;
   }
 
+  .card{ display: flex; flex-direction: column; }
+
   .card .meta{
     background: var(--cream);
     padding: 18px 22px 22px;
+    flex: 1;
   }
 
   .card .meta h3{
@@ -633,11 +641,149 @@
 
   /* enquanto o JS não carrega, mantém tudo visível (progressive enhancement) */
   .no-js .reveal, .no-js .reveal-3d{ opacity: 1 !important; transform: none !important; }
+
+  /* ---------------- barra de progresso de leitura ---------------- */
+
+  .progress{
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    z-index: 60;
+    pointer-events: none;
+  }
+
+  /* ---------------- hero animado ---------------- */
+
+  .hero h1 .line{
+    display: block;
+    overflow: hidden;
+    padding: 0.06em 0;
+    margin: -0.06em 0;
+  }
+  .hero h1 .ch{
+    display: inline-block;
+    transform: translateY(110%);
+    animation: rise .85s cubic-bezier(.16,.8,.3,1) forwards;
+    animation-delay: calc(var(--i) * 45ms + 150ms);
+  }
+  @keyframes rise{ to{ transform: translateY(0); } }
+
+  /* "Fullstack" é revelado da esquerda para a direita, como uma assinatura */
+  html:not(.no-js) .hero h1 .script{
+    clip-path: inset(-25% 100% -25% -5%);
+    animation: wipe 1.5s cubic-bezier(.65,0,.35,1) 0.95s forwards;
+  }
+  @keyframes wipe{ to{ clip-path: inset(-25% -5% -25% -5%); } }
+
+  .avatar{
+    position: relative;
+    text-decoration: none;
+    transition: transform .25s ease;
+  }
+  .avatar:hover{ transform: translateY(-3px); }
+  .avatar::before{
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 18px;
+    border: 1.5px solid var(--accent);
+    animation: ring 2.4s ease-out infinite;
+  }
+  @keyframes ring{
+    0%{ transform: scale(1); opacity: .7; }
+    100%{ transform: scale(1.35); opacity: 0; }
+  }
+  .scroll-hint{
+    display: block;
+    margin-top: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ---------------- cards: selo "no ar", tags e inclinação 3D ---------------- */
+
+  .card .live{
+    position: absolute;
+    top: 18px; right: 20px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .card .live::before{
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #3DDC84;
+    box-shadow: 0 0 0 0 rgba(61,220,132,.7);
+    animation: pulse 1.8s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(61,220,132,.7); }
+    100%{ box-shadow: 0 0 0 8px rgba(61,220,132,0); }
+  }
+
+  .stack{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    margin: 0 0 14px;
+  }
+  .stack li{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 3px 9px;
+  }
+
+  .card::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.22), transparent 55%);
+    transition: opacity .25s ease;
+  }
+  .card:hover::after{ opacity: 1; }
+
+  /* só entra depois que o card já apareceu (evita brigar com a animação de entrada) */
+  .card.tilt-ready{
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(0);
+    transition: transform .15s ease-out, box-shadow .25s ease;
+    will-change: transform;
+  }
+  .card.tilt-ready:has(.card-link:hover){
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px);
+  }
 </style>
 </head>
 <body>
 
 <noscript><style>.reveal, .statement .word{ opacity: 1 !important; transform: none !important; color: var(--ink) !important; }</style></noscript>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <nav class="pill">
   <span class="name mono">RJ</span>
@@ -653,10 +799,11 @@
 <header class="hero">
   <div class="hero-inner">
     <span class="accent-mark a1">&#10022;</span>
-    <h1>Desenvolvedor<span class="script">Fullstack</span></h1>
+    <h1 aria-label="Desenvolvedor Fullstack"><span class="line" id="heroWord" aria-hidden="true">Desenvolvedor</span><span class="script" aria-hidden="true">Fullstack</span></h1>
     <span class="accent-mark a2">&#10038;</span>
   </div>
-  <div class="avatar mono">RJ</div>
+  <a class="avatar mono" href="#sobre" aria-label="Rolar para a seção Sobre">RJ</a>
+  <span class="scroll-hint" aria-hidden="true">role &#8595;&#xFE0E;</span>
   <span class="corner left">&copy;2026</span>
   <span class="corner right mono">/CONSTRUINDO DESDE 2025</span>
 </header>
@@ -727,10 +874,12 @@
         <a class="card-link" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Boutique Arco-Íris"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">boutique-arco-iris</span></div>
+          <span class="live">No ar</span>
         </div>
         <div class="meta">
           <h3>Boutique Arco-Íris</h3>
           <p>E-commerce fullstack com consultora de estilo via API da Anthropic (Claude): React 18, TypeScript, Node/Express, PostgreSQL, JWT.</p>
+          <ul class="stack"><li>React</li><li>TypeScript</li><li>Node</li><li>PostgreSQL</li><li>Claude API</li></ul>
           <a href="https://github.com/RicardoJuliano/Boutique-Arco-ris" target="_blank" rel="noopener">ver repositório</a>
         </div>
       </div>
@@ -739,10 +888,12 @@
         <a class="card-link" href="https://trokei-seven.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de trokei"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">trokei</span></div>
+          <span class="live">No ar</span>
         </div>
         <div class="meta">
           <h3>trokei</h3>
-          <p>Brechó online fullstack em Kotlin: catálogo, cadastro e interface responsiva.</p>
+          <p>Brechó online: catálogo, cadastro de produtos e interface responsiva.</p>
+          <ul class="stack"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
           <a href="https://github.com/RicardoJuliano/trokei" target="_blank" rel="noopener">ver repositório</a>
         </div>
       </div>
@@ -755,6 +906,7 @@
         <div class="meta">
           <h3>Resumo Fácil</h3>
           <p>Automação de vídeos-resumo de livros: roteiro e narração com IA (Claude, ElevenLabs), FFmpeg e upload automático.</p>
+          <ul class="stack"><li>Node</li><li>FFmpeg</li><li>Claude API</li><li>ElevenLabs</li></ul>
           <a href="https://github.com/RicardoJuliano/booktube" target="_blank" rel="noopener">ver repositório</a>
         </div>
       </div>
@@ -768,6 +920,7 @@
         <div class="meta">
           <h3>StudyTaks</h3>
           <p>Plataforma de monitoramento de progresso de estudos, em Kotlin.</p>
+          <ul class="stack"><li>Kotlin</li><li>Android</li></ul>
           <a href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener">ver repositório</a>
         </div>
       </div>
@@ -781,6 +934,7 @@
         <div class="meta">
           <h3>Touch Hero</h3>
           <p>Jogo estilo Guitar Hero com detecção de toques em tempo real, em Kotlin.</p>
+          <ul class="stack"><li>Kotlin</li><li>Android</li></ul>
           <a href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener">ver repositório</a>
         </div>
       </div>
@@ -793,6 +947,7 @@
         <div class="meta">
           <h3>Landing Pages</h3>
           <p>Coleção de landing pages: estudos de design responsivo em HTML5 e CSS3.</p>
+          <ul class="stack"><li>HTML5</li><li>CSS3</li></ul>
           <a href="https://github.com/RicardoJuliano/landinpages" target="_blank" rel="noopener">ver repositório</a>
         </div>
       </div>
@@ -801,10 +956,12 @@
         <a class="card-link" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Vende no Zap"></a>
         <div class="shot">
           <div class="chrome"><span></span><span></span><span></span><span class="url">vende-no-zap</span></div>
+          <span class="live">No ar</span>
         </div>
         <div class="meta">
           <h3>Vende no Zap</h3>
           <p>CRM com cobrança via Pix para quem vende pelo WhatsApp: Next.js, Supabase (Postgres, Auth, Row Level Security), Zod, testes com Vitest.</p>
+          <ul class="stack"><li>Next.js</li><li>Supabase</li><li>Zod</li><li>Vitest</li></ul>
           <a href="https://github.com/RicardoJuliano/vende-no-zap" target="_blank" rel="noopener">ver repositório</a>
         </div>
       </div>
@@ -917,15 +1074,50 @@
     wordEls.forEach((w, i) => w.classList.toggle('on', i < revealCount));
   }
 
+  // barra de progresso de leitura
+  const progressEl = document.getElementById('progress');
+  function updateProgress(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    progressEl.style.transform = `scaleX(${p})`;
+  }
+
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking){
-      requestAnimationFrame(() => { updateReveal(); ticking = false; });
+      requestAnimationFrame(() => { updateReveal(); updateProgress(); ticking = false; });
       ticking = true;
     }
   });
-  window.addEventListener('resize', updateReveal);
+  window.addEventListener('resize', () => { updateReveal(); updateProgress(); });
   updateReveal();
+  updateProgress();
+
+  // hero: "Desenvolvedor" sobe letra por letra
+  const heroWord = document.getElementById('heroWord');
+  heroWord.innerHTML = [...heroWord.textContent].map((c, i) => `<span class="ch" style="--i:${i}">${c}</span>`).join('');
+
+  // cards: inclinação 3D que segue o mouse (só em telas com mouse)
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    document.querySelectorAll('.card').forEach((card) => {
+      card.addEventListener('pointerenter', () => {
+        if (card.classList.contains('in-view')) card.classList.add('tilt-ready');
+      });
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--ry', ((px - 0.5) * 10).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - py) * 8).toFixed(2) + 'deg');
+        card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+      });
+    });
+  }
 </script>
 
 </body>
