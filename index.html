@@ -6,9 +6,13 @@
 <title>Ricardo Juliano, Desenvolvedor Fullstack</title>
 <meta name="description" content="Portfólio de Ricardo Juliano, desenvolvedor fullstack em transição de carreira, Buenópolis, MG.">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23000000'/%3E%3Ctext x='32' y='41' font-family='Courier New, monospace' font-size='24' font-weight='700' fill='%23F5EDEA' text-anchor='middle'%3ERJ%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#F5EDEA">
+<link rel="canonical" href="https://meu-portfolio-sigma-self.vercel.app/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 <meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Ricardo Juliano">
 <meta property="og:title" content="Ricardo Juliano, Desenvolvedor Fullstack">
 <meta property="og:description" content="Portfólio de Ricardo Juliano, desenvolvedor fullstack em transição de carreira, Buenópolis, MG.">
 <meta property="og:image" content="https://meu-portfolio-sigma-self.vercel.app/img/og-image.jpg">
@@ -22,6 +26,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Qwitcher+Grypen:wght@700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.remove('no-js');</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ricardo Juliano",
+  "jobTitle": "Desenvolvedor Fullstack",
+  "description": "Desenvolvedor fullstack em transição de carreira, de Buenópolis, MG, em busca da primeira oportunidade como desenvolvedor.",
+  "url": "https://meu-portfolio-sigma-self.vercel.app/",
+  "image": "https://meu-portfolio-sigma-self.vercel.app/img/ricardo-perfil.jpg",
+  "email": "mailto:rjulianojunior@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Buenópolis",
+    "addressRegion": "MG",
+    "addressCountry": "BR"
+  },
+  "sameAs": [
+    "https://github.com/RicardoJuliano",
+    "https://www.linkedin.com/in/ricardo-juliano"
+  ],
+  "knowsAbout": ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Next.js", "Supabase", "Kotlin", "Jetpack Compose"]
+}
+</script>
 <style>
   :root{
     --cream: #F5EDEA;
@@ -112,10 +139,11 @@
     gap: 4px;
     z-index: 49;
     opacity: 0;
+    visibility: hidden; /* tira os links do foco do Tab enquanto o menu está fechado */
     pointer-events: none;
-    transition: opacity .18s ease, transform .18s ease;
+    transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
   }
-  .menu.open{ opacity: 1; pointer-events: auto; transform: translateX(-50%) scale(1); }
+  .menu.open{ opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) scale(1); transition-delay: 0s; }
   .menu a{
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.82rem;
@@ -150,6 +178,20 @@
     margin: 0;
   }
 
+  /* em celulares, "Desenvolvedor" quebrava em "DESENVOLVED / OR" */
+  .hero h1 .line{ white-space: nowrap; }
+  @media (max-width: 600px){ .hero h1{ font-size: 9.4vw; } }
+
+  .hero h1 .hero-name{
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: clamp(0.78rem, 2.4vw, 1.05rem);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--accent-2);
+    margin-bottom: 22px;
+  }
+
   .hero h1 .script{
     display: block;
     font-size: 1.7em;
@@ -166,6 +208,13 @@
   }
   .accent-mark.a1{ top: -10px; left: -70px; font-size: 2.6rem; animation-delay: .3s; }
   .accent-mark.a2{ bottom: -6px; right: -64px; font-size: 2.2rem; animation-delay: 1s; transform: rotate(14deg); }
+
+  /* telas estreitas: os ornamentos ficam dentro da página (antes estouravam 50px para a direita) */
+  @media (max-width: 600px){
+    .accent-mark.a1{ left: -6px; top: -34px; }
+    .accent-mark.a2{ right: -6px; bottom: -30px; }
+  }
+  .hero{ overflow-x: clip; }
 
   @keyframes float{
     0%{ transform: translateY(0) rotate(0deg); }
@@ -393,34 +442,43 @@
     background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.72) 100%);
   }
 
+  .card .shot{ --bar: 42px; }
+
   .card .shot video{
     position: absolute;
-    inset: 0;
+    inset: var(--bar) 0 0 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - var(--bar));
     object-fit: cover;
     object-position: center top;
     z-index: 0;
   }
 
+  /* barra de rótulo com fundo sólido: o nome do projeto nunca fica sobre a imagem */
   .card .chrome{
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: var(--bar);
+    padding: 0 22px;
+    z-index: 3;
     display:flex;
     align-items:center;
     gap: 6px;
+    background: var(--dark);
   }
   .card .chrome span{
     width: 8px; height: 8px; border-radius: 50%;
     background: rgba(255,255,255,0.5);
   }
   .card .chrome .url{
+    width: auto; height: auto;
     margin-left: 10px;
     white-space: nowrap;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.68rem;
     color: rgba(255,255,255,0.6);
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
     padding: 3px 10px;
     border-radius: 20px;
   }
@@ -453,13 +511,126 @@
     color: var(--accent-2);
   }
 
-  .c1 .shot{ background-color: #5A4BFF; background-image: url('img/boutique-arco-iris.jpg'); }
-  .c2 .shot{ background-color: #2FA37D; background-image: url('img/trokei.jpg'); }
-  .c3 .shot{ background-color: #E3A542; background-image: url('img/booktube.png'); }
+  .card .shot-img{
+    position: absolute;
+    inset: var(--bar) 0 0 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .c1 .shot{ background-color: #5A4BFF; } .c1 .shot-img{ background-image: url('img/boutique-arco-iris.jpg'); }
+  .c2 .shot{ background-color: #2FA37D; } .c2 .shot-img{ background-image: url('img/trokei.jpg'); }
+  .c3 .shot{ background-color: #E3A542; }
   .c4 .shot{ background-color: #FF6B6B; }
   .c5 .shot{ background-color: #3E7CFF; }
-  .c6 .shot{ background-color: #B85AFF; background-image: url('img/landinpages.png'); }
-  .c7 .shot{ background-color: #16A34A; background-image: url('img/vende-no-zap.jpg'); }
+  .c6 .shot{ background-color: #B85AFF; }
+  .c7 .shot{ background-color: #16A34A; } .c7 .shot-img{ background-image: url('img/vende-no-zap.jpg'); }
+
+  /* ---- capas em CSS (no lugar das prévias do GitHub) ---- */
+  .card .shot-img.cover{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 22px 26px;
+    color: var(--cream);
+  }
+  .cover-booktube{ background: radial-gradient(520px 260px at 90% 0%, rgba(200,30,58,.55), transparent 60%), linear-gradient(145deg, #2A1608, #170606); }
+  .cover-landing{ background: radial-gradient(520px 260px at 90% 0%, rgba(184,90,255,.5), transparent 60%), linear-gradient(145deg, #241036, #170606); }
+  .cover-title{
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4.2vw, 2.2rem);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .cover-sub{
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--dark-soft);
+  }
+  .cover-steps{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .cover-steps i{
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: .04em;
+    border: 1px solid rgba(245,237,234,.35);
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+
+  /* ---- descrição estruturada dos cards ---- */
+  .card .facts{ margin: 10px 0 14px; font-variant-numeric: lining-nums; }
+  .card.featured.wide .shot-img{ background-position: left top; }
+  .card .facts div{ margin: 0 0 8px; }
+  .card .facts dt{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+  }
+  .card .facts dd{
+    margin: 2px 0 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .card .links{ display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .card .links a{ margin: 0; }
+  .card .links a.primary{ font-weight: 600; }
+
+  /* selo "só código" (sem demo) */
+  .card .live.code::before{ background: #BDB6B0; animation: none; box-shadow: none; }
+
+  /* ---- destaque dos 3 projetos mais fortes ---- */
+  .sub-head{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+  .sub-head.more{ margin-top: 56px; }
+  .grid.featured{ margin-bottom: 0; }
+  .card.featured{ box-shadow: 0 0 0 2px var(--accent), 0 14px 30px rgba(200,30,58,0.14); }
+  .card.featured.wide{ grid-column: 1 / -1; flex-direction: row; }
+  .card.featured.wide .shot{ flex: 0 0 52%; aspect-ratio: auto; min-height: 340px; }
+  .card.featured.wide .meta{ padding: 30px 32px; display: flex; flex-direction: column; justify-content: center; }
+  .card.featured.wide .meta h3{ font-size: 1.6rem; }
+  .card.featured.wide .facts dd{ font-size: 0.95rem; }
+  .card .tag-destaque{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+    display: block;
+  }
+  /* capas em CSS ficam sem o véu escuro das imagens */
+  .card .shot:has(.cover)::after{ display: none; }
+  @media (max-width: 720px){
+    .card.featured.wide{ flex-direction: column; }
+    .card.featured.wide .shot{ flex: none; aspect-ratio: 16/10.5; min-height: 0; }
+    .card.featured.wide .meta{ padding: 18px 22px 22px; }
+    .card.featured.wide .meta h3{ font-size: 1.15rem; }
+  }
+
+  /* ---- contato: chamadas ---- */
+  .cta-row{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .cta-row a{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1.5px solid var(--ink);
+  }
+  .cta-row a.solid{ background: var(--accent); border-color: var(--accent); color: #fff; }
+  .cta-row a:hover{ background: var(--ink); border-color: var(--ink); color: var(--cream); }
 
   /* ---------------- contact ---------------- */
 
@@ -636,9 +807,6 @@
     .reveal-3d{ transform: rotateY(-45deg) translateX(-8%); }
   }
 
-  /* Efeitos de scroll sempre ativos, mesmo com "reduzir movimento" ligado no SO —
-     é a peça central do portfólio, então rodam por decisão explícita do dono do site. */
-
   /* enquanto o JS não carrega, mantém tudo visível (progressive enhancement) */
   .no-js .reveal, .no-js .reveal-3d{ opacity: 1 !important; transform: none !important; }
 
@@ -711,8 +879,8 @@
 
   .card .live{
     position: absolute;
-    top: 18px; right: 20px;
-    z-index: 2;
+    top: 9px; right: 20px;
+    z-index: 4;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -777,6 +945,24 @@
   .card.tilt-ready:has(.card-link:hover){
     transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px);
   }
+  /* Respeita "reduzir movimento" do sistema: sem revelação 3D, sem animações infinitas,
+     sem autoplay de vídeo (o JS também checa) e tudo já visível. */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .reveal, .reveal-3d, .reveal.in-view, .reveal-3d.in-view{
+      opacity: 1; transform: none; transition: none;
+    }
+    .statement .word, .statement .word.on{ color: var(--ink); transition: none; }
+    .accent-mark, .avatar::before, .card .live::before{ animation: none; }
+    .avatar::before{ display: none; }
+    .hero h1 .ch{ transform: none; animation: none; }
+    html:not(.no-js) .hero h1 .script{ clip-path: none; animation: none; }
+    .card, .card.tilt-ready, .avatar{ transition: none; }
+    .card.tilt-ready, .card.tilt-ready:has(.card-link:hover){ transform: none; }
+    .card:has(.card-link:hover){ transform: none; }
+    .menu{ transition: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -785,25 +971,26 @@
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav class="pill">
+<nav class="pill" aria-label="Principal">
   <span class="name mono">RJ</span>
-  <button id="menuBtn" aria-label="abrir menu">&#8226;&#8226;&#8226;</button>
+  <button id="menuBtn" type="button" aria-label="Menu de seções" aria-expanded="false" aria-controls="menu">&#8226;&#8226;&#8226;</button>
 </nav>
-<div class="menu" id="menu">
+<nav class="menu" id="menu" aria-label="Seções da página">
   <a href="#sobre">Sobre</a>
   <a href="#frentes">Frentes</a>
   <a href="#projetos">Projetos</a>
   <a href="#contato">Contato</a>
-</div>
+</nav>
 
+<main id="conteudo">
 <header class="hero">
   <div class="hero-inner">
-    <span class="accent-mark a1">&#10022;</span>
-    <h1 aria-label="Desenvolvedor Fullstack"><span class="line" id="heroWord" aria-hidden="true">Desenvolvedor</span><span class="script" aria-hidden="true">Fullstack</span></h1>
-    <span class="accent-mark a2">&#10038;</span>
+    <span class="accent-mark a1" aria-hidden="true">&#10022;</span>
+    <h1 aria-label="Ricardo Juliano, Desenvolvedor Fullstack"><span class="hero-name" aria-hidden="true">Ricardo Juliano</span><span class="line" id="heroWord" aria-hidden="true">Desenvolvedor</span><span class="script" aria-hidden="true">Fullstack</span></h1>
+    <span class="accent-mark a2" aria-hidden="true">&#10038;</span>
   </div>
-  <a class="avatar mono" href="#sobre" aria-label="Rolar para a seção Sobre">RJ</a>
-  <span class="scroll-hint" aria-hidden="true">role &#8595;&#xFE0E;</span>
+  <a class="avatar mono" href="#sobre" aria-label="Rolar para a seção Sobre">&#8595;&#xFE0E;</a>
+  <span class="scroll-hint" aria-hidden="true">role</span>
   <span class="corner left">&copy;2026</span>
   <span class="corner right mono">/CONSTRUINDO DESDE 2025</span>
 </header>
@@ -868,101 +1055,165 @@
       <h2>Projetos</h2>
       <a href="https://github.com/RicardoJuliano" target="_blank" rel="noopener">Ver todo o código</a>
     </div>
-    <div class="grid reveal-group">
+    <p class="sub-head reveal">/Em destaque</p>
+    <div class="grid featured reveal-group">
 
-      <div class="card c1 reveal">
-        <a class="card-link" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Boutique Arco-Íris"></a>
+      <div class="card featured wide c7 reveal">
+        <a class="card-link" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Vende no Zap"></a>
         <div class="shot">
-          <div class="chrome"><span></span><span></span><span></span><span class="url">boutique-arco-iris</span></div>
-          <span class="live">No ar</span>
+          <div class="shot-img" role="img" aria-label="Página inicial do Vende no Zap, com o aviso 'Em construção — lista de espera aberta' e o título 'Pare de perder venda porque esqueceu de responder no WhatsApp'."></div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">vende-no-zap</span></div>
+          <span class="live">Em construção · demo no ar</span>
         </div>
         <div class="meta">
-          <h3>Boutique Arco-Íris</h3>
-          <p>E-commerce fullstack com consultora de estilo via API da Anthropic (Claude): React 18, TypeScript, Node/Express, PostgreSQL, JWT.</p>
-          <ul class="stack"><li>React</li><li>TypeScript</li><li>Node</li><li>PostgreSQL</li><li>Claude API</li></ul>
-          <a href="https://github.com/RicardoJuliano/Boutique-Arco-ris" target="_blank" rel="noopener">ver repositório</a>
+          <span class="tag-destaque">Destaque</span>
+          <h3>Vende no Zap</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Quem vende pelo WhatsApp perde vendas por esquecer de responder. A proposta é um CRM leve, com cobrança Pix, para autônomos e pequenos negócios.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Fases 0 a 2 concluídas: landing com lista de espera, login (e-mail/senha e Google), banco com isolamento por usuário (Row Level Security) e funil kanban com contatos, anotações e lembretes de follow-up. Testes com Vitest.</dd></div>
+          </dl>
+          <ul class="stack"><li>Next.js</li><li>TypeScript</li><li>Supabase</li><li>Zod</li><li>Vitest</li></ul>
+          <div class="links">
+            <a class="primary" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener">Ver demo</a>
+            <a href="https://github.com/RicardoJuliano/vende-no-zap" target="_blank" rel="noopener">Ver código</a>
+          </div>
         </div>
       </div>
 
-      <div class="card c2 reveal">
+      <div class="card featured c1 reveal">
+        <a class="card-link" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Boutique Arco-Íris"></a>
+        <div class="shot">
+          <div class="shot-img" role="img" aria-label="Página inicial da Boutique Arco-Íris: um cabideiro com roupas em tons neutros ao fundo e o título 'A luz mais brilhante do Arco-Íris está dentro de você'."></div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">boutique-arco-iris</span></div>
+          <span class="live">Demo no ar</span>
+        </div>
+        <div class="meta">
+          <span class="tag-destaque">Destaque</span>
+          <h3>Boutique Arco-Íris</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Uma loja de moda realista, não só uma landing page: vitrine para o cliente e área administrativa.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Catálogo, carrinho e checkout, login com JWT, painel admin de produtos, API REST em Node/Express com PostgreSQL e uma consultora de estilo com a API da Anthropic (Claude).</dd></div>
+          </dl>
+          <ul class="stack"><li>React</li><li>TypeScript</li><li>Node</li><li>PostgreSQL</li><li>Claude API</li></ul>
+          <div class="links">
+            <a class="primary" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener">Ver demo</a>
+            <a href="https://github.com/RicardoJuliano/Boutique-Arco-ris" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card featured c3 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/booktube" target="_blank" rel="noopener" aria-label="Abrir repositório do Resumo Fácil"></a>
+        <div class="shot">
+          <div class="shot-img cover cover-booktube" role="img" aria-label="Capa do projeto booktube, automação do canal Resumo Fácil, com as etapas roteiro, narração, legendas, cenas e upload.">
+            <span class="cover-title" aria-hidden="true">booktube</span>
+            <span class="cover-sub" aria-hidden="true">Resumo Fácil</span>
+            <span class="cover-steps" aria-hidden="true"><i>roteiro</i><i>narração</i><i>legendas</i><i>cenas</i><i>upload</i></span>
+          </div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">booktube</span></div>
+          <span class="live code">Só código</span>
+        </div>
+        <div class="meta">
+          <span class="tag-destaque">Destaque</span>
+          <h3>Resumo Fácil</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Produzir vídeos-resumo de livros para o canal Resumo Fácil.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Motor de automação que gera roteiro, narração (ElevenLabs), legendas e animação de cenas, e faz o upload automático.</dd></div>
+          </dl>
+          <ul class="stack"><li>Node</li><li>FFmpeg</li><li>Claude API</li><li>ElevenLabs</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/booktube" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="sub-head more reveal">/Mais projetos</p>
+    <div class="grid reveal-group">
+
+      <div class="card compact c2 reveal">
         <a class="card-link" href="https://trokei-seven.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de trokei"></a>
         <div class="shot">
+          <div class="shot-img" role="img" aria-label="Página inicial do Trokei: barra laranja com menu, título 'Moda sustentável ao seu alcance' e botão 'Ver produtos'."></div>
           <div class="chrome"><span></span><span></span><span></span><span class="url">trokei</span></div>
-          <span class="live">No ar</span>
+          <span class="live">Protótipo · demo no ar</span>
         </div>
         <div class="meta">
           <h3>trokei</h3>
-          <p>Brechó online: catálogo, cadastro de produtos e interface responsiva.</p>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Uma vitrine simples de moda sustentável para comprar e vender peças de brechó.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Protótipo com vitrine, menu mobile, contador de carrinho e cadastro com validação. Carrinho e cadastro são simulados: não há backend.</dd></div>
+          </dl>
           <ul class="stack"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          <a href="https://github.com/RicardoJuliano/trokei" target="_blank" rel="noopener">ver repositório</a>
+          <div class="links">
+            <a class="primary" href="https://trokei-seven.vercel.app" target="_blank" rel="noopener">Ver demo</a>
+            <a href="https://github.com/RicardoJuliano/trokei" target="_blank" rel="noopener">Ver código</a>
+          </div>
         </div>
       </div>
 
-      <div class="card c3 reveal">
-        <a class="card-link" href="https://github.com/RicardoJuliano/booktube" target="_blank" rel="noopener" aria-label="Abrir repositório do Resumo Fácil"></a>
-        <div class="shot">
-          <div class="chrome"><span></span><span></span><span></span><span class="url">booktube</span></div>
-        </div>
-        <div class="meta">
-          <h3>Resumo Fácil</h3>
-          <p>Automação de vídeos-resumo de livros: roteiro e narração com IA (Claude, ElevenLabs), FFmpeg e upload automático.</p>
-          <ul class="stack"><li>Node</li><li>FFmpeg</li><li>Claude API</li><li>ElevenLabs</li></ul>
-          <a href="https://github.com/RicardoJuliano/booktube" target="_blank" rel="noopener">ver repositório</a>
-        </div>
-      </div>
-
-      <div class="card c4 reveal">
+      <div class="card compact c4 reveal">
         <a class="card-link" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener" aria-label="Abrir repositório de StudyTaks"></a>
         <div class="shot">
-          <video class="lazy-video" src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" loop muted playsinline preload="metadata"></video>
+          <video class="lazy-video" src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do app StudyTaks: checklist de estudo com tarefas e navegação inferior Tasks, Progress e Profile."></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">study-taks</span></div>
+          <span class="live code">Só código</span>
         </div>
         <div class="meta">
           <h3>StudyTaks</h3>
-          <p>Plataforma de monitoramento de progresso de estudos, em Kotlin.</p>
-          <ul class="stack"><li>Kotlin</li><li>Android</li></ul>
-          <a href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener">ver repositório</a>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Acompanhar o que já foi estudado em um checklist.</dd></div>
+            <div><dt>O que foi construído</dt><dd>App Android com lista de tarefas de estudo e checkbox, navegação inferior (Tasks, Progress, Profile) e Material 3. As telas de progresso e perfil ainda são simples.</dd></div>
+          </dl>
+          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Android</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener">Ver código</a>
+          </div>
         </div>
       </div>
 
-      <div class="card c5 reveal">
+      <div class="card compact c5 reveal">
         <a class="card-link" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener" aria-label="Abrir repositório de Touch Hero"></a>
         <div class="shot">
-          <video class="lazy-video" src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" loop muted playsinline preload="metadata"></video>
+          <video class="lazy-video" src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do jogo Touch Hero: três faixas com notas caindo, pontuação, combo e multiplicador."></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">touch-hero</span></div>
+          <span class="live code">Só código</span>
         </div>
         <div class="meta">
           <h3>Touch Hero</h3>
-          <p>Jogo estilo Guitar Hero com detecção de toques em tempo real, em Kotlin.</p>
-          <ul class="stack"><li>Kotlin</li><li>Android</li></ul>
-          <a href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener">ver repositório</a>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Um jogo de ritmo: as notas descem e o jogador toca na faixa certa, no tempo certo.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Modo Easy jogável com música local, notas sincronizadas por tempo, pontuação, combo e tela de resultado. Medium e Hard são próximas etapas.</dd></div>
+          </dl>
+          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Android</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener">Ver código</a>
+          </div>
         </div>
       </div>
 
-      <div class="card c6 reveal">
+      <div class="card compact c6 reveal">
         <a class="card-link" href="https://github.com/RicardoJuliano/landinpages" target="_blank" rel="noopener" aria-label="Abrir repositório de Landing Pages"></a>
         <div class="shot">
+          <div class="shot-img cover cover-landing" role="img" aria-label="Capa do projeto landinpages, coleção de landing pages em HTML5 e CSS3: Aurelia Imóveis e loja de suplementos.">
+            <span class="cover-title" aria-hidden="true">landinpages</span>
+            <span class="cover-sub" aria-hidden="true">estudos de design responsivo</span>
+            <span class="cover-steps" aria-hidden="true"><i>Aurelia Imóveis</i><i>Loja de suplementos</i></span>
+          </div>
           <div class="chrome"><span></span><span></span><span></span><span class="url">landinpages</span></div>
+          <span class="live code">Só código</span>
         </div>
         <div class="meta">
           <h3>Landing Pages</h3>
-          <p>Coleção de landing pages: estudos de design responsivo em HTML5 e CSS3.</p>
-          <ul class="stack"><li>HTML5</li><li>CSS3</li></ul>
-          <a href="https://github.com/RicardoJuliano/landinpages" target="_blank" rel="noopener">ver repositório</a>
-        </div>
-      </div>
-
-      <div class="card c7 reveal">
-        <a class="card-link" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Vende no Zap"></a>
-        <div class="shot">
-          <div class="chrome"><span></span><span></span><span></span><span class="url">vende-no-zap</span></div>
-          <span class="live">No ar</span>
-        </div>
-        <div class="meta">
-          <h3>Vende no Zap</h3>
-          <p>CRM com cobrança via Pix para quem vende pelo WhatsApp: Next.js, Supabase (Postgres, Auth, Row Level Security), Zod, testes com Vitest.</p>
-          <ul class="stack"><li>Next.js</li><li>Supabase</li><li>Zod</li><li>Vitest</li></ul>
-          <a href="https://github.com/RicardoJuliano/vende-no-zap" target="_blank" rel="noopener">ver repositório</a>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Praticar direção visual, responsividade e interações em JavaScript puro.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Duas páginas estáticas: uma imobiliária de alto padrão (Aurelia Imóveis) e uma loja de suplementos, sem framework nem build.</dd></div>
+          </dl>
+          <ul class="stack"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/landinpages" target="_blank" rel="noopener">Ver código</a>
+          </div>
         </div>
       </div>
 
@@ -974,15 +1225,22 @@
   <div class="wrap contact-grid reveal-group">
     <div class="reveal">
       <h2>Vamos<br>conversar.</h2>
-      <p>Tem uma vaga de fullstack júnior e acha que eu me encaixo? Me chama por qualquer um desses canais.</p>
+      <p>Estou buscando minha primeira oportunidade como desenvolvedor: vagas de fullstack júnior e também freelas. Se você acha que eu me encaixo, me chama por qualquer um desses canais.</p>
+      <div class="cta-row">
+        <a class="solid" href="mailto:rjulianojunior@gmail.com?subject=Vaga%20j%C3%BAnior%20de%20desenvolvedor%20fullstack">Vaga júnior</a>
+        <a href="mailto:rjulianojunior@gmail.com?subject=Projeto%20freelancer">Freela</a>
+      </div>
     </div>
     <div class="contact-actions reveal">
       <a href="mailto:rjulianojunior@gmail.com">E-mail <span class="tag mono">rjulianojunior@gmail.com</span></a>
       <a href="https://github.com/RicardoJuliano" target="_blank" rel="noopener">GitHub <span class="tag mono">RicardoJuliano</span></a>
       <a href="https://www.linkedin.com/in/ricardo-juliano" target="_blank" rel="noopener">LinkedIn <span class="tag mono">ricardo-juliano</span></a>
+      <!-- CURRÍCULO: quando o PDF existir, colocar aqui um link, por exemplo:
+           <a href="/curriculo.pdf" download>Currículo <span class="tag mono">PDF</span></a> -->
     </div>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
@@ -1012,7 +1270,7 @@
 </footer>
 
 <script>
-  document.documentElement.classList.remove('no-js');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // scroll-reveal (fade/slide + 3D) via IntersectionObserver
   const revealEls = document.querySelectorAll('.reveal, .reveal-3d');
@@ -1032,7 +1290,10 @@
 
   // vídeos dos cards só tocam enquanto estão visíveis na tela (economiza dados/bateria)
   const lazyVideos = document.querySelectorAll('.lazy-video');
-  if ('IntersectionObserver' in window && lazyVideos.length){
+  if (reduceMotion){
+    // movimento reduzido: sem autoplay, o vídeo fica parado no poster
+    lazyVideos.forEach((v) => v.pause());
+  } else if ('IntersectionObserver' in window && lazyVideos.length){
     const videoIo = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting){
@@ -1050,11 +1311,18 @@
   // menu toggle
   const menuBtn = document.getElementById('menuBtn');
   const menu = document.getElementById('menu');
-  menuBtn.addEventListener('click', () => menu.classList.toggle('open'));
+  function setMenu(open){
+    menu.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+  }
+  menuBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
   document.addEventListener('click', (e) => {
-    if (!menu.contains(e.target) && e.target !== menuBtn) menu.classList.remove('open');
+    if (!menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
   });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')){ setMenu(false); menuBtn.focus(); }
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
   // scroll-reveal statement: wrap words
   const stEl = document.getElementById('statement');
@@ -1088,8 +1356,8 @@
       requestAnimationFrame(() => { updateReveal(); updateProgress(); ticking = false; });
       ticking = true;
     }
-  });
-  window.addEventListener('resize', () => { updateReveal(); updateProgress(); });
+  }, { passive: true });
+  window.addEventListener('resize', () => { updateReveal(); updateProgress(); }, { passive: true });
   updateReveal();
   updateProgress();
 
@@ -1098,7 +1366,7 @@
   heroWord.innerHTML = [...heroWord.textContent].map((c, i) => `<span class="ch" style="--i:${i}">${c}</span>`).join('');
 
   // cards: inclinação 3D que segue o mouse (só em telas com mouse)
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+  if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
     document.querySelectorAll('.card').forEach((card) => {
       card.addEventListener('pointerenter', () => {
         if (card.classList.contains('in-view')) card.classList.add('tilt-ready');
