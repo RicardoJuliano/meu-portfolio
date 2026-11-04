@@ -8,19 +8,23 @@ Meu portfólio pessoal: uma página única com quem eu sou, no que trabalho e os
 
 ## Sobre mim
 
-Sou desenvolvedor fullstack em transição de carreira, de Buenópolis, MG. Trabalho com React e TypeScript no front-end e Node/Express com PostgreSQL no back-end, e tenho experiência com Android nativo em Kotlin. Estou buscando minha primeira oportunidade como desenvolvedor.
+Sou desenvolvedor fullstack, de Buenópolis, MG. Na web, trabalho com React, Next.js e TypeScript no front-end e com Node/Express ou Supabase e PostgreSQL no back-end. No Android, uso Kotlin e Jetpack Compose, e no projeto mais recente também escrevi a API em Kotlin, com Ktor e MongoDB. Meu projeto mais completo é a Boutique Arco-Íris, uma loja com checkout, painel administrativo e uma consultora de estilo feita com a API da Anthropic (Claude). Estou em transição de carreira e busco minha primeira oportunidade como desenvolvedor.
 
 ## Projetos em destaque
 
 | Projeto | O que é | Stack |
 |---|---|---|
-| [Boutique Arco-Íris](https://github.com/RicardoJuliano/Boutique-Arco-ris) ([demo](https://boutique-arco-ris.vercel.app)) | E-commerce com consultora de estilo por IA | React, TypeScript, Node/Express, JWT, API da Anthropic |
-| [Vende no Zap](https://github.com/RicardoJuliano/vende-no-zap) ([demo](https://vende-no-zap.vercel.app)) | CRM com cobrança Pix para quem vende pelo WhatsApp | Next.js, Supabase, Zod, Vitest |
-| [trokei](https://github.com/RicardoJuliano/trokei) ([demo](https://trokei-seven.vercel.app)) | Brechó online com catálogo e cadastro de produtos | HTML, CSS, JavaScript |
-| [Resumo Fácil (booktube)](https://github.com/RicardoJuliano/booktube) | Automação de vídeos-resumo de livros | Node, FFmpeg, Claude, ElevenLabs |
-| [StudyTaks](https://github.com/RicardoJuliano/StudyTaks) | Monitoramento de progresso de estudos | Kotlin |
-| [Touch Hero](https://github.com/RicardoJuliano/Touch-Hero) | Jogo estilo Guitar Hero com detecção de toques | Kotlin |
-| [Landing Pages](https://github.com/RicardoJuliano/landinpages) | Estudos de design responsivo | HTML5, CSS3 |
+| [Boutique Arco-Íris](https://github.com/RicardoJuliano/Boutique-Arco-ris) ([demo](https://boutique-arco-ris.vercel.app)) | Loja de moda com checkout, painel admin, importação de nota fiscal e consultora de estilo com IA | React, TypeScript, Node/Express, PostgreSQL, Claude API |
+| [Vende no Zap](https://github.com/RicardoJuliano/vende-no-zap) ([demo](https://vende-no-zap.vercel.app)) | CRM leve para quem vende pelo WhatsApp (WhatsApp e Pix ainda não implementados) | Next.js, TypeScript, Supabase, Zod, Vitest |
+| [App Pokémon](https://github.com/RicardoJuliano/App_Pokemon) ([APK](https://github.com/RicardoJuliano/App_Pokemon/releases/latest)) | Jogo Android de batalhas por turnos que funciona sem internet | Kotlin, Jetpack Compose, Room, Retrofit, Coroutines |
+| [StudyTaks](https://github.com/RicardoJuliano/StudyTaks) | App Android de checklist de estudos com API própria (em andamento) | Kotlin, Jetpack Compose, Ktor, MongoDB, Docker |
+| [Project Tilt](https://github.com/RicardoJuliano/Mini-game) | Jogo de corrida em que o celular vira o volante (um jogador contra bots; modo em grupo é a meta) | JavaScript, Three.js, WebSocket, Node |
+| [Resumo Fácil (booktube)](https://github.com/RicardoJuliano/booktube) | Ferramenta de linha de comando que produz vídeos-resumo de livros | Node, FFmpeg, Claude API, ElevenLabs |
+| [Touch Hero](https://github.com/RicardoJuliano/Touch-Hero) | Jogo de ritmo estilo Guitar Hero com detecção de toques | Kotlin, Jetpack Compose |
+| [trokei](https://github.com/RicardoJuliano/trokei) ([demo](https://trokei-seven.vercel.app)) | Brechó online com catálogo e cadastro de produtos (protótipo) | HTML, CSS, JavaScript |
+| [Maison Vêtir](https://github.com/RicardoJuliano/maison-vetir) ([demo](https://ricardojuliano.github.io/maison-vetir/)) | Vitrine de moda premium só com front-end | HTML, CSS, JavaScript |
+| [NEXUS](https://github.com/RicardoJuliano/NEXUS-SITE) ([demo](https://ricardojuliano.github.io/NEXUS-SITE/)) | Landing conceitual futurista, um experimento visual | HTML, CSS, JavaScript |
+| [Landing Pages](https://github.com/RicardoJuliano/landinpages) | Estudos de design responsivo | HTML5, CSS3, JavaScript |
 
 ## Como o site foi feito
 

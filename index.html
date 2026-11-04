@@ -46,7 +46,7 @@
     "https://github.com/RicardoJuliano",
     "https://www.linkedin.com/in/ricardo-juliano"
   ],
-  "knowsAbout": ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Next.js", "Supabase", "Kotlin", "Jetpack Compose"]
+  "knowsAbout": ["React", "TypeScript", "Next.js", "Node.js", "Express", "PostgreSQL", "Supabase", "MongoDB", "Ktor", "Kotlin", "Jetpack Compose", "Room", "Three.js"]
 }
 </script>
 <style>
@@ -526,6 +526,10 @@
   .c5 .shot{ background-color: #3E7CFF; }
   .c6 .shot{ background-color: #B85AFF; }
   .c7 .shot{ background-color: #16A34A; } .c7 .shot-img{ background-image: url('img/vende-no-zap.jpg'); }
+  .c8 .shot{ background-color: #170606; } .c8 .shot-img{ background-image: url('img/app-pokemon.jpg'); }
+  .c9 .shot{ background-color: #F5F3EE; } .c9 .shot-img{ background-image: url('img/maison-vetir.jpg'); }
+  .c10 .shot{ background-color: #0A0A0A; } .c10 .shot-img{ background-image: url('img/nexus.jpg'); }
+  .c11 .shot{ background-color: #F59E0B; }
 
   /* ---- capas em CSS (no lugar das prévias do GitHub) ---- */
   .card .shot-img.cover{
@@ -537,6 +541,7 @@
     color: var(--cream);
   }
   .cover-booktube{ background: radial-gradient(520px 260px at 90% 0%, rgba(200,30,58,.55), transparent 60%), linear-gradient(145deg, #2A1608, #170606); }
+  .cover-tilt{ background: radial-gradient(520px 260px at 90% 0%, rgba(245,158,11,.5), transparent 60%), linear-gradient(145deg, #2A1A06, #170606); }
   .cover-landing{ background: radial-gradient(520px 260px at 90% 0%, rgba(184,90,255,.5), transparent 60%), linear-gradient(145deg, #241036, #170606); }
   .cover-title{
     font-family: 'IBM Plex Mono', monospace;
@@ -790,6 +795,7 @@
   .reveal-group .reveal:nth-child(5){ --reveal-delay: .32s; }
   .reveal-group .reveal:nth-child(6){ --reveal-delay: .4s; }
   .reveal-group .reveal:nth-child(7){ --reveal-delay: .48s; }
+  .reveal-group .reveal:nth-child(8){ --reveal-delay: .56s; }
 
   /* ---------------- scroll reveal 3D (foto "Sobre" abrindo como uma porta) ---------------- */
 
@@ -907,6 +913,14 @@
     100%{ box-shadow: 0 0 0 8px rgba(61,220,132,0); }
   }
 
+  /* celulares estreitos: o selo não cobre o nome do projeto na barra */
+  @media (max-width: 420px){
+    .card .live{ right: 12px; font-size: 0.58rem; letter-spacing: 0; padding: 4px 8px; gap: 5px; }
+    .card .chrome{ padding: 0 16px; }
+    .card .chrome span:not(.url){ display: none; }
+    .card .chrome .url{ margin-left: 0; }
+  }
+
   .stack{
     list-style: none;
     display: flex;
@@ -1002,18 +1016,18 @@
     </div>
     <div class="about-photo mono reveal-3d" role="img" aria-label="Foto de Ricardo Juliano"></div>
     <div class="reveal">
-      <p>Sou desenvolvedor fullstack, com foco em React/TypeScript no
-      front-end e Node/Express + PostgreSQL no back. Comecei com HTML, CSS
-      e Kotlin, migrei pra TypeScript sem erros de compilador e hoje
-      mantenho em produção um e-commerce completo: autenticação JWT, banco
-      relacional e uma consultora de estilo com IA usando a API da
-      Anthropic (Claude) direto.</p>
-      <p>Moro em Buenópolis, Minas Gerais, e hoje também administro
-      carteiras PF, PJ e Agro numa cooperativa de crédito, o que me deu uma
-      visão de dentro de como sistemas financeiros de verdade funcionam.
-      Estou em transição de carreira, com foco em fullstack (e experiência
-      adicional em Android nativo com Kotlin), buscando minha primeira
-      oportunidade como desenvolvedor.</p>
+      <p>Sou desenvolvedor fullstack. Na web, trabalho com React, Next.js e
+      TypeScript no front-end e com Node/Express ou Supabase e PostgreSQL no
+      back-end. No Android, uso Kotlin e Jetpack Compose, e no projeto mais
+      recente também escrevi a API em Kotlin, com Ktor e MongoDB.</p>
+      <p>Meu projeto mais completo é a Boutique Arco-Íris: uma loja com
+      checkout, painel administrativo, importação de nota fiscal e uma
+      consultora de estilo feita com a API da Anthropic (Claude), com testes
+      de API e de ponta a ponta.</p>
+      <p>Moro em Buenópolis, Minas Gerais, e hoje também administro carteiras
+      PF, PJ e Agro numa cooperativa de crédito, o que me deu uma visão de
+      dentro de como sistemas financeiros funcionam. Estou em transição de
+      carreira e busco minha primeira oportunidade como desenvolvedor.</p>
     </div>
   </div>
 </section>
@@ -1021,9 +1035,8 @@
 <section class="statement">
   <div class="wrap">
     <p id="statement">
-      Da ideia à produção. Projetos simples, testados de verdade e
-      construídos pra resolver um problema real, não só pra parecer
-      bonitos na tela.
+      Da ideia ao ar. Prefiro projetos que resolvem um problema real e deixo
+      claro o que já funciona e o que ainda falta.
     </p>
   </div>
 </section>
@@ -1032,19 +1045,23 @@
   <div class="wrap reveal-group">
     <div class="frente reveal">
       <h3>Frontend</h3>
-      <span class="tags">React &#8226; TypeScript &#8226; CSS responsivo</span>
+      <span class="tags">React &#8226; Next.js &#8226; TypeScript &#8226; Tailwind CSS</span>
     </div>
     <div class="frente reveal">
-      <h3>Fullstack &amp; IA</h3>
-      <span class="tags">Node/Express &#8226; PostgreSQL &#8226; JWT &#8226; API da Anthropic (Claude)</span>
+      <h3>Backend</h3>
+      <span class="tags">Node/Express &#8226; Ktor &#8226; PostgreSQL &#8226; MongoDB &#8226; Supabase</span>
     </div>
     <div class="frente reveal">
-      <h3>Automação</h3>
-      <span class="tags">FFmpeg &#8226; Node Canvas &#8226; Pipelines de vídeo</span>
+      <h3>IA e automação</h3>
+      <span class="tags">API da Anthropic (Claude) &#8226; ElevenLabs &#8226; FFmpeg &#8226; Pipelines de vídeo</span>
     </div>
     <div class="frente reveal">
       <h3>Mobile</h3>
-      <span class="tags">Kotlin &#8226; Jetpack Compose &#8226; Android nativo</span>
+      <span class="tags">Kotlin &#8226; Jetpack Compose &#8226; Room &#8226; Retrofit &#8226; MVVM</span>
+    </div>
+    <div class="frente reveal">
+      <h3>Jogos e tempo real</h3>
+      <span class="tags">Three.js &#8226; WebSocket &#8226; Jetpack Compose</span>
     </div>
   </div>
 </section>
@@ -1058,29 +1075,7 @@
     <p class="sub-head reveal">/Em destaque</p>
     <div class="grid featured reveal-group">
 
-      <div class="card featured wide c7 reveal">
-        <a class="card-link" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Vende no Zap"></a>
-        <div class="shot">
-          <div class="shot-img" role="img" aria-label="Página inicial do Vende no Zap, com o aviso 'Em construção — lista de espera aberta' e o título 'Pare de perder venda porque esqueceu de responder no WhatsApp'."></div>
-          <div class="chrome"><span></span><span></span><span></span><span class="url">vende-no-zap</span></div>
-          <span class="live">Em construção · demo no ar</span>
-        </div>
-        <div class="meta">
-          <span class="tag-destaque">Destaque</span>
-          <h3>Vende no Zap</h3>
-          <dl class="facts">
-            <div><dt>Problema</dt><dd>Quem vende pelo WhatsApp perde vendas por esquecer de responder. A proposta é um CRM leve, com cobrança Pix, para autônomos e pequenos negócios.</dd></div>
-            <div><dt>O que foi construído</dt><dd>Fases 0 a 2 concluídas: landing com lista de espera, login (e-mail/senha e Google), banco com isolamento por usuário (Row Level Security) e funil kanban com contatos, anotações e lembretes de follow-up. Testes com Vitest.</dd></div>
-          </dl>
-          <ul class="stack"><li>Next.js</li><li>TypeScript</li><li>Supabase</li><li>Zod</li><li>Vitest</li></ul>
-          <div class="links">
-            <a class="primary" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener">Ver demo</a>
-            <a href="https://github.com/RicardoJuliano/vende-no-zap" target="_blank" rel="noopener">Ver código</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="card featured c1 reveal">
+      <div class="card featured wide c1 reveal">
         <a class="card-link" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Boutique Arco-Íris"></a>
         <div class="shot">
           <div class="shot-img" role="img" aria-label="Página inicial da Boutique Arco-Íris: um cabideiro com roupas em tons neutros ao fundo e o título 'A luz mais brilhante do Arco-Íris está dentro de você'."></div>
@@ -1091,10 +1086,10 @@
           <span class="tag-destaque">Destaque</span>
           <h3>Boutique Arco-Íris</h3>
           <dl class="facts">
-            <div><dt>Problema</dt><dd>Uma loja de moda realista, não só uma landing page: vitrine para o cliente e área administrativa.</dd></div>
-            <div><dt>O que foi construído</dt><dd>Catálogo, carrinho e checkout, login com JWT, painel admin de produtos, API REST em Node/Express com PostgreSQL e uma consultora de estilo com a API da Anthropic (Claude).</dd></div>
+            <div><dt>Problema</dt><dd>Uma loja de moda realista, não só uma landing page: vitrine para o cliente e área administrativa para quem vende.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Catálogo, carrinho, checkout e confirmação de pedido, login com JWT e painel admin com produtos, pedidos, resumo de vendas, estoque por tamanho e importação de nota fiscal em XML. A consultora de estilo usa a API da Anthropic (Claude), e o projeto tem testes de API e de ponta a ponta.</dd></div>
           </dl>
-          <ul class="stack"><li>React</li><li>TypeScript</li><li>Node</li><li>PostgreSQL</li><li>Claude API</li></ul>
+          <ul class="stack"><li>React</li><li>TypeScript</li><li>Node/Express</li><li>PostgreSQL</li><li>Claude API</li></ul>
           <div class="links">
             <a class="primary" href="https://boutique-arco-ris.vercel.app" target="_blank" rel="noopener">Ver demo</a>
             <a href="https://github.com/RicardoJuliano/Boutique-Arco-ris" target="_blank" rel="noopener">Ver código</a>
@@ -1102,7 +1097,100 @@
         </div>
       </div>
 
-      <div class="card featured c3 reveal">
+      <div class="card featured c7 reveal">
+        <a class="card-link" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Vende no Zap"></a>
+        <div class="shot">
+          <div class="shot-img" role="img" aria-label="Página inicial do Vende no Zap, com o aviso 'Em construção, lista de espera aberta' e o título 'Pare de perder venda porque esqueceu de responder no WhatsApp'."></div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">vende-no-zap</span></div>
+          <span class="live">Em construção · demo no ar</span>
+        </div>
+        <div class="meta">
+          <span class="tag-destaque">Destaque</span>
+          <h3>Vende no Zap</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Quem vende pelo WhatsApp perde vendas por esquecer de responder. A proposta é um CRM leve, com cobrança Pix, para autônomos e pequenos negócios.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Landing com lista de espera, login por e-mail ou Google, isolamento entre contas com Row Level Security e funil kanban com contatos, anotações e avisos de follow-up nos cards. A integração com WhatsApp e o Pix ainda não foram feitos: dependem de validar a ideia com vendedores reais.</dd></div>
+          </dl>
+          <ul class="stack"><li>Next.js</li><li>TypeScript</li><li>Supabase</li><li>Zod</li><li>Vitest</li></ul>
+          <div class="links">
+            <a class="primary" href="https://vende-no-zap.vercel.app" target="_blank" rel="noopener">Ver demo</a>
+            <a href="https://github.com/RicardoJuliano/vende-no-zap" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card featured c8 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/App_Pokemon" target="_blank" rel="noopener" aria-label="Abrir repositório de App Pokémon"></a>
+        <div class="shot">
+          <div class="shot-img" role="img" aria-label="Quatro telas do App Pokémon lado a lado: lista de Pokémon, batalha por turnos, tela de vitória e tela de game over."></div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">app-pokemon</span></div>
+          <span class="live">APK disponível</span>
+        </div>
+        <div class="meta">
+          <span class="tag-destaque">Destaque</span>
+          <h3>App Pokémon</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Desafio técnico: um jogo Android de batalhas por turnos que precisa continuar funcionando sem internet.</dd></div>
+            <div><dt>O que foi construído</dt><dd>O jogador escolhe um dos 151 primeiros Pokémon e enfrenta três adversários. Os dados e as imagens vêm da PokeAPI na primeira abertura e depois ficam no aparelho, com arquitetura MVVM e Repository. Testado em modo avião.</dd></div>
+          </dl>
+          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Room</li><li>Retrofit</li><li>Coroutines</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/App_Pokemon/releases/latest" target="_blank" rel="noopener">Baixar APK</a>
+            <a href="https://github.com/RicardoJuliano/App_Pokemon" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="sub-head more reveal">/Mais projetos</p>
+    <div class="grid reveal-group">
+
+      <div class="card compact c4 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener" aria-label="Abrir repositório de StudyTaks"></a>
+        <div class="shot">
+          <video class="lazy-video" src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do app StudyTaks: checklist de estudo com tarefas e navegação inferior Tasks, Progress e Profile."></video>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">study-taks</span></div>
+          <span class="live code">Só código</span>
+        </div>
+        <div class="meta">
+          <h3>StudyTaks</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Acompanhar o que já foi estudado em um checklist.</dd></div>
+            <div><dt>O que foi construído</dt><dd>App Android que lista, cria, marca e remove tarefas por uma API própria em Ktor com MongoDB, publicada no Render com Docker. O projeto continua em andamento: cache offline com Room e a aba de quiz são os próximos passos.</dd></div>
+          </dl>
+          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Ktor</li><li>MongoDB</li><li>Docker</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card compact c11 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/Mini-game" target="_blank" rel="noopener" aria-label="Abrir repositório de Project Tilt"></a>
+        <div class="shot">
+          <div class="shot-img cover cover-tilt" role="img" aria-label="Capa do projeto Project Tilt, o celular vira volante, com as etapas QR code, volante, drift e bots.">
+            <span class="cover-title" aria-hidden="true">project tilt</span>
+            <span class="cover-sub" aria-hidden="true">o celular vira volante</span>
+            <span class="cover-steps" aria-hidden="true"><i>QR code</i><i>volante</i><i>drift</i><i>bots</i></span>
+          </div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">project-tilt</span></div>
+          <span class="live code">Só código</span>
+        </div>
+        <div class="meta">
+          <h3>Project Tilt</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Um jogo de corrida em que o celular vira o volante, sem instalar nada. A meta é jogar em grupo na mesma tela.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Protótipo no navegador, com um jogador contra bots: o celular se conecta pela rede local e controla o kart inclinando a tela. Já tem drift, turbo, colisão entre karts e placar de posição. O modo para vários jogadores ainda não foi feito.</dd></div>
+          </dl>
+          <ul class="stack"><li>JavaScript</li><li>Three.js</li><li>WebSocket</li><li>Node</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/Mini-game" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card compact c3 reveal">
         <a class="card-link" href="https://github.com/RicardoJuliano/booktube" target="_blank" rel="noopener" aria-label="Abrir repositório do Resumo Fácil"></a>
         <div class="shot">
           <div class="shot-img cover cover-booktube" role="img" aria-label="Capa do projeto booktube, automação do canal Resumo Fácil, com as etapas roteiro, narração, legendas, cenas e upload.">
@@ -1114,11 +1202,10 @@
           <span class="live code">Só código</span>
         </div>
         <div class="meta">
-          <span class="tag-destaque">Destaque</span>
           <h3>Resumo Fácil</h3>
           <dl class="facts">
             <div><dt>Problema</dt><dd>Produzir vídeos-resumo de livros para o canal Resumo Fácil.</dd></div>
-            <div><dt>O que foi construído</dt><dd>Motor de automação que gera roteiro, narração (ElevenLabs), legendas e animação de cenas, e faz o upload automático.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Ferramenta de linha de comando que recebe título e autor e gera roteiro, narração, cenas, legendas, miniatura e descrição, monta o vídeo no FFmpeg e envia para o YouTube.</dd></div>
           </dl>
           <ul class="stack"><li>Node</li><li>FFmpeg</li><li>Claude API</li><li>ElevenLabs</li></ul>
           <div class="links">
@@ -1127,10 +1214,25 @@
         </div>
       </div>
 
-    </div>
-
-    <p class="sub-head more reveal">/Mais projetos</p>
-    <div class="grid reveal-group">
+      <div class="card compact c5 reveal">
+        <a class="card-link" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener" aria-label="Abrir repositório de Touch Hero"></a>
+        <div class="shot">
+          <video class="lazy-video" src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do jogo Touch Hero: três faixas com notas caindo, pontuação, combo e multiplicador."></video>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">touch-hero</span></div>
+          <span class="live code">Só código</span>
+        </div>
+        <div class="meta">
+          <h3>Touch Hero</h3>
+          <dl class="facts">
+            <div><dt>Problema</dt><dd>Um jogo de ritmo: as notas descem e o jogador toca na faixa certa, no tempo certo.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Modo Easy jogável com música local, notas sincronizadas por tempo, pontuação, combo e tela de resultado. Medium e Hard são próximas etapas.</dd></div>
+          </dl>
+          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Android</li></ul>
+          <div class="links">
+            <a class="primary" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </div>
+      </div>
 
       <div class="card compact c2 reveal">
         <a class="card-link" href="https://trokei-seven.vercel.app" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de trokei"></a>
@@ -1153,42 +1255,44 @@
         </div>
       </div>
 
-      <div class="card compact c4 reveal">
-        <a class="card-link" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener" aria-label="Abrir repositório de StudyTaks"></a>
+      <div class="card compact c9 reveal">
+        <a class="card-link" href="https://ricardojuliano.github.io/maison-vetir/" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de Maison Vêtir"></a>
         <div class="shot">
-          <video class="lazy-video" src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do app StudyTaks: checklist de estudo com tarefas e navegação inferior Tasks, Progress e Profile."></video>
-          <div class="chrome"><span></span><span></span><span></span><span class="url">study-taks</span></div>
-          <span class="live code">Só código</span>
+          <div class="shot-img" role="img" aria-label="Página inicial da Maison Vêtir: título 'Silhuetas que falam por si sós' ao lado de uma foto de moda sobre fundo verde, com um cartão de produto."></div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">maison-vetir</span></div>
+          <span class="live">Demo no ar</span>
         </div>
         <div class="meta">
-          <h3>StudyTaks</h3>
+          <h3>Maison Vêtir</h3>
           <dl class="facts">
-            <div><dt>Problema</dt><dd>Acompanhar o que já foi estudado em um checklist.</dd></div>
-            <div><dt>O que foi construído</dt><dd>App Android com lista de tarefas de estudo e checkbox, navegação inferior (Tasks, Progress, Profile) e Material 3. As telas de progresso e perfil ainda são simples.</dd></div>
+            <div><dt>Problema</dt><dd>Uma vitrine de moda premium com cara de loja real, usando só front-end.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Página estática com coleção de produtos, carrinho lateral com total e remoção de itens, menu mobile e animações de entrada. O carrinho fica em memória: não há checkout nem backend.</dd></div>
           </dl>
-          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Android</li></ul>
+          <ul class="stack"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
           <div class="links">
-            <a class="primary" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener">Ver código</a>
+            <a class="primary" href="https://ricardojuliano.github.io/maison-vetir/" target="_blank" rel="noopener">Ver demo</a>
+            <a href="https://github.com/RicardoJuliano/maison-vetir" target="_blank" rel="noopener">Ver código</a>
           </div>
         </div>
       </div>
 
-      <div class="card compact c5 reveal">
-        <a class="card-link" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener" aria-label="Abrir repositório de Touch Hero"></a>
+      <div class="card compact c10 reveal">
+        <a class="card-link" href="https://ricardojuliano.github.io/NEXUS-SITE/" target="_blank" rel="noopener" aria-label="Abrir demo ao vivo de NEXUS"></a>
         <div class="shot">
-          <video class="lazy-video" src="video/touch-hero.mp4" poster="img/touch-hero-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do jogo Touch Hero: três faixas com notas caindo, pontuação, combo e multiplicador."></video>
-          <div class="chrome"><span></span><span></span><span></span><span class="url">touch-hero</span></div>
-          <span class="live code">Só código</span>
+          <div class="shot-img" role="img" aria-label="Página inicial do NEXUS: o título 'Beyond human interface' em letras grandes sobre fundo escuro, com uma esfera roxa brilhante e grade de HUD."></div>
+          <div class="chrome"><span></span><span></span><span></span><span class="url">nexus</span></div>
+          <span class="live">Demo no ar</span>
         </div>
         <div class="meta">
-          <h3>Touch Hero</h3>
+          <h3>NEXUS</h3>
           <dl class="facts">
-            <div><dt>Problema</dt><dd>Um jogo de ritmo: as notas descem e o jogador toca na faixa certa, no tempo certo.</dd></div>
-            <div><dt>O que foi construído</dt><dd>Modo Easy jogável com música local, notas sincronizadas por tempo, pontuação, combo e tela de resultado. Medium e Hard são próximas etapas.</dd></div>
+            <div><dt>Problema</dt><dd>Testar até onde dá para levar uma interface futurista só com HTML, CSS e JavaScript.</dd></div>
+            <div><dt>O que foi construído</dt><dd>Landing conceitual com cursor customizado, grade de HUD, scan line e métricas animadas. É um experimento visual, sem produto real por trás.</dd></div>
           </dl>
-          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Android</li></ul>
+          <ul class="stack"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
           <div class="links">
-            <a class="primary" href="https://github.com/RicardoJuliano/Touch-Hero" target="_blank" rel="noopener">Ver código</a>
+            <a class="primary" href="https://ricardojuliano.github.io/NEXUS-SITE/" target="_blank" rel="noopener">Ver demo</a>
+            <a href="https://github.com/RicardoJuliano/NEXUS-SITE" target="_blank" rel="noopener">Ver código</a>
           </div>
         </div>
       </div>
