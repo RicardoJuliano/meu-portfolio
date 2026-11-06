@@ -1150,19 +1150,20 @@
       <div class="card compact c4 reveal">
         <a class="card-link" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener" aria-label="Abrir repositório de StudyTaks"></a>
         <div class="shot">
-          <video class="lazy-video" src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do app StudyTaks: checklist de estudo com tarefas e navegação inferior Tasks, Progress e Profile."></video>
+          <video class="lazy-video" src="video/studytaks.mp4" poster="img/studytaks-poster.jpg" loop muted playsinline preload="metadata" aria-label="Gravação de tela do app StudyTaks: checklist de estudo offline-first com tarefas e navegação inferior Tasks, Progress e Profile."></video>
           <div class="chrome"><span></span><span></span><span></span><span class="url">study-taks</span></div>
-          <span class="live code">Só código</span>
+          <span class="live">APK disponível</span>
         </div>
         <div class="meta">
           <h3>StudyTaks</h3>
           <dl class="facts">
             <div><dt>Problema</dt><dd>Acompanhar o que já foi estudado em um checklist.</dd></div>
-            <div><dt>O que foi construído</dt><dd>App Android que lista, cria, marca e remove tarefas por uma API própria em Ktor com MongoDB, publicada no Render com Docker. O projeto continua em andamento: cache offline com Room e a aba de quiz são os próximos passos.</dd></div>
+            <div><dt>O que foi construído</dt><dd>App Android completo, com API própria em Ktor + MongoDB publicada no Render. Lê sempre do cache local em Room e só escreve na API quando há conexão, sem fila de sincronização: uma falha de rede mostra erro e não aplica a mudança. Estados de loading e erro tratados em toda a tela.</dd></div>
           </dl>
-          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Ktor</li><li>MongoDB</li><li>Docker</li></ul>
+          <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Room</li><li>Ktor</li><li>MongoDB</li><li>Docker</li></ul>
           <div class="links">
-            <a class="primary" href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener">Ver código</a>
+            <a class="primary" href="https://github.com/RicardoJuliano/StudyTaks/releases/latest" target="_blank" rel="noopener">Baixar APK</a>
+            <a href="https://github.com/RicardoJuliano/StudyTaks" target="_blank" rel="noopener">Ver código</a>
           </div>
         </div>
       </div>
