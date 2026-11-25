@@ -19,7 +19,7 @@ Meu projeto web mais completo é a Boutique Arco-Íris, uma loja com checkout, p
 | [Boutique Arco-Íris](https://github.com/RicardoJuliano/Boutique-Arco-ris) ([demo](https://boutique-arco-ris.vercel.app)) | Loja de moda com checkout, painel admin, importação de nota fiscal e consultora de estilo com IA | React, TypeScript, Node/Express, PostgreSQL, Claude API |
 | [Vende no Zap](https://github.com/RicardoJuliano/vende-no-zap) ([demo](https://vende-no-zap.vercel.app)) | CRM leve para quem vende pelo WhatsApp (WhatsApp e Pix ainda não implementados) | Next.js, TypeScript, Supabase, Zod, Vitest |
 | [App Pokémon](https://github.com/RicardoJuliano/App_Pokemon) ([APK](https://github.com/RicardoJuliano/App_Pokemon/releases/latest)) | Jogo Android de batalhas por turnos que funciona sem internet | Kotlin, Jetpack Compose, Room, Retrofit, Coroutines |
-| [StudyTaks](https://github.com/RicardoJuliano/StudyTaks) | App Android de checklist de estudos com API própria (em andamento) | Kotlin, Jetpack Compose, Ktor, MongoDB, Docker |
+| [StudyTasks](https://github.com/RicardoJuliano/StudyTasks) | App Android de checklist de estudos com API própria (em andamento) | Kotlin, Jetpack Compose, Ktor, MongoDB, Docker |
 | [Project Tilt](https://github.com/RicardoJuliano/Mini-game) | Jogo de corrida em que o celular vira o volante (um jogador contra bots; modo em grupo é a meta) | JavaScript, Three.js, WebSocket, Node |
 | [Resumo Fácil (booktube)](https://github.com/RicardoJuliano/booktube) | Ferramenta de linha de comando que produz vídeos-resumo de livros | Node, FFmpeg, Claude API, ElevenLabs |
 | [Touch Hero](https://github.com/RicardoJuliano/Touch-Hero) | Jogo de ritmo estilo Guitar Hero com detecção de toques | Kotlin, Jetpack Compose |
