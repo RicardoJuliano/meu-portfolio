@@ -1,4 +1,4 @@
-# Ricardo Juliano, Desenvolvedor Fullstack
+# Ricardo Juliano, Desenvolvedor Android
 
 Meu portfólio pessoal: uma página única com quem eu sou, no que trabalho e os projetos que já construí.
 
@@ -8,7 +8,9 @@ Meu portfólio pessoal: uma página única com quem eu sou, no que trabalho e os
 
 ## Sobre mim
 
-Sou desenvolvedor fullstack, de Buenópolis, MG. Na web, trabalho com React, Next.js e TypeScript no front-end e com Node/Express ou Supabase e PostgreSQL no back-end. No Android, uso Kotlin e Jetpack Compose, e no projeto mais recente também escrevi a API em Kotlin, com Ktor e MongoDB. Meu projeto mais completo é a Boutique Arco-Íris, uma loja com checkout, painel administrativo e uma consultora de estilo feita com a API da Anthropic (Claude). Estou em transição de carreira e busco minha primeira oportunidade como desenvolvedor.
+Sou desenvolvedor Android, de Buenópolis, MG. Escrevo apps em Kotlin e Jetpack Compose, com Room, Retrofit e MVVM, e no projeto mais recente também fiz a API em Kotlin, com Ktor e MongoDB. Na web, trabalho com React, Next.js, TypeScript e Node/Express. Estou construindo o CaixaPJ, um app de fluxo de caixa para pequenas empresas.
+
+Meu projeto web mais completo é a Boutique Arco-Íris, uma loja com checkout, painel administrativo e uma consultora de estilo feita com a API da Anthropic (Claude). Estou em transição de carreira e busco minha primeira oportunidade como desenvolvedor.
 
 ## Projetos em destaque
 
